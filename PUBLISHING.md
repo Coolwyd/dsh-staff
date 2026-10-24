@@ -22,12 +22,14 @@
 | 真实可运行代码 | ✅ 有 | `index.js` 注册 19 个工具 + `client.js` 前端 |
 | `npm pack --dry-run` 可打包 | ✅ 通过 | 9 文件 / 110.8 kB |
 | 仓库描述属实 | ⚠️ 已修 | 原写「17 个工具」「群 2–6 人」，实际 19 个工具、2–8 人 |
-| 公开 GitHub 仓库 | ❌ 缺 | `git remote -v` 为空 |
-| `dsh-plugin` topic | ❌ 缺 | 仓库未建 |
-| 仓库创建满 1 天 | ⏳ 待满足 | CI 自动检查，建仓当天提 PR 会被拒 |
-| npm 已发布 | ❌ 缺 | 本机 `npm whoami` 未登录，包未发布 |
-| `repository/homepage/bugs` | ⚠️ 占位符 | 仍是 `OWNER` |
-| 图标（可选） | ⏳ | 市场卡片只收 **GitHub 托管位图**（png/jpg），`icon.svg` 不能用；不填则回退作者头像 |
+| 公开 GitHub 仓库 | ✅ 已建 | <https://github.com/Coolwyd/dsh-staff>，public，created 2026-10-24T09:02:53Z |
+| `dsh-plugin` topic | ✅ 已加 | topics = dsh-plugin / agent-teams / deepseek-harness / workflow |
+| 仓库创建满 1 天 | ⏳ 解禁时刻 | 2026-10-25T09:02:53Z（CI 常量 `MIN_AGE_DAYS = 1`，无提交数门槛） |
+| 条目文件 | ✅ 已提交到 fork | `Coolwyd/awesome-dsh-plugin` main：`data/plugins/Coolwyd__dsh-staff.yml` |
+| 收录 PR | ⏳ 定时提交 | 自动化 `dsh-staff 上架开 PR（主/备用）`，解禁后自动创建并盯 CI |
+| npm 已发布 | ❌ 未发布（非门槛） | 本机 `npm whoami` 未登录；只是"带了版本号更好装" |
+| `repository/homepage/bugs` | ✅ 已改 | 全部指向 `Coolwyd/dsh-staff` |
+| 图标（可选） | ✅ 已备 | `assets/icon-180.png`（180×180 PNG，蓝底双人），条目已填 GitHub 托管直链 |
 
 ## 三、执行步骤
 
@@ -93,3 +95,17 @@ npm view dsh-plugin-catalog --registry=https://registry.npmjs.org
 | 描述必须属实 | 写「19 个工具」就要真能数出 19 个；夸大是被打回的头号原因 |
 | 分类 | 只能从 `agi ui usage theme model identity session memory tools wsl browser vision voice docs skill workflow git notify dev security remote market fun` 里选，**没有 agent** |
 | 能力声明 | 插件会写 `~/.dsh/staff/*.json`、开本机只读 HTTP 路由，README 需说明；卸载不删数据 |
+
+## 五、实际执行记录（2026-10-24）
+
+| 序号 | 动作 | 落地位置 | 结果 |
+|---|---|---|---|
+| 1 | 建公开仓库并灌入 13 个文件 | `Coolwyd/dsh-staff`（commit `486f3280`） | ✅ |
+| 2 | 打 topic | dsh-plugin / agent-teams / deepseek-harness / workflow | ✅ |
+| 3 | Fork 市场仓库 | `Coolwyd/awesome-dsh-plugin` | ✅ |
+| 4 | 提交条目文件 | fork main：`data/plugins/Coolwyd__dsh-staff.yml`（commit `8fd7860`） | ✅ |
+| 5 | 生成市场图标 | `assets/icon-180.png`（180×180，commit `7519036`） | ✅ |
+| 6 | 建 PR | 解禁后由 `E:\DSH\deliverables\open-market-pr.cjs` 自动创建 | ⏳ 2026-10-25 17:10 CST |
+
+> 本机 `github.com` 的 HTTPS 极不稳定（`git push` 反复 `Connection was reset`），因此所有写操作走 `api.github.com`（实测 6/6 稳定）；令牌存放 `~/.dsh/github-token`（600）。
+> 重跑入口：`cd /e/DSH/deliverables && node open-market-pr.cjs`（幂等：已有开放 PR 只轮询、不重复创建）。
