@@ -1,0 +1,8 @@
+node_modules/
+*.log
+*.tgz
+.DS_Store
+
+# 内部开发记录与本机脚本，不随公开仓库发布
+docs/自进化闭环.md
+tools/

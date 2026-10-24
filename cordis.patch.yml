@@ -1,0 +1,4 @@
+- insert:
+    - id: dsh-staff
+      name: 'dsh-staff'
+      config: {}

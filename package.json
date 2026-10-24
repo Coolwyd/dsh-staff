@@ -1,0 +1,59 @@
+{
+  "name": "dsh-staff",
+  "version": "2.1.0",
+  "description": "DSH Staff — 员工制：持久员工名册、任务账本、群聊与私聊，把 Agent Teams 变成可管理、可对话、可验收的员工团队。",
+  "keywords": [
+    "deepseek",
+    "harness",
+    "dsh",
+    "dsh-plugin",
+    "agent-teams",
+    "staff",
+    "employees",
+    "teammate",
+    "team",
+    "chat",
+    "group-chat",
+    "marketplace"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "dsh": ">=0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coolwyd/dsh-staff.git"
+  },
+  "homepage": "https://github.com/Coolwyd/dsh-staff#readme",
+  "bugs": {
+    "url": "https://github.com/Coolwyd/dsh-staff/issues"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  }
+}
